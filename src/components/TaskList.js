@@ -2,49 +2,44 @@ import React from 'react'
 import './TaskList.css'
 import { TaskCard } from './TaskCard';
 
-export const TaskList = () => {
+export const TaskList = ({tasks, setTasks}) => {
 
     const buttonShowText = "Show Tasks";
 
     const buttonHideText = "Hide Tasks";
 
-    const taskMap = [
-        {id: 412332, taskName: "Learn React"},
-        {id: 745643, taskName: "Develop React App - Task Viewer"},
-        {id: 123125, taskName: "Take Notes for React Topics learnt"},
-        {id: 954643, taskName: "Check-in the code to Github"}
-    ]
+    //const refTasks = React.useRef([...tasks, taskMap]);
 
     const [task, showTask] = React.useState([]);
 
-    const [buttonLabel, setButtonLabel] = React.useState(buttonShowText);
+    const [buttonLabel, setButtonLabel] = React.useState(buttonHideText);
 
-    const [taskSectionVisible, setTaskSectionVisibility] = React.useState(false);
+    const [taskSectionVisible, setTaskSectionVisibility] = React.useState(true);
     
 
     function handleClick(){
 
         if(taskSectionVisible){
-            showTask([]);
+
+            console.log("Hiding Task Section");
+            console.log("tasks Size: " + tasks.length);
+            //setTasks([]);
+            //showTask([]);
             setButtonLabel(buttonShowText);
             setTaskSectionVisibility(false);
         }
         else{
-            showTask(taskMap);
+            console.log("Showing Task Section");
+            console.log("tasks Size: " + tasks.length);
+            //setTasks(refTasks.current);
+            //setTasks([...tasks, taskMap]);
+            //showTask(tasks);
             setButtonLabel(buttonHideText);
             setTaskSectionVisibility(true);
         }
     return ; 
     }
-    
-    function htmlDecode(input){
-        console.log("input: " + input);
-        var e = document.createElement('div');
-        e.innerHTML = input;
-        var output =  e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
-        console.log("output: " + output);
-        return output;
-    }
+
 
     function handleDelete(id){
         showTask(task.filter(item => item.id !==id));
@@ -52,8 +47,16 @@ export const TaskList = () => {
 
     function displayTaskCards(){
 
-        return task.map((item) => (
-                    console.log("item: " + item.taskName),
+
+        //console.log("taskMap Size: " + taskMap.length);
+
+        //const tasksMap = taskMap.concat(tasks);
+
+        console.log("tasks Size: " + tasks.length);
+
+        //setTasks(tasksMap);
+
+        return tasks.map((item) => (
                     <TaskCard key={item.id} item={item} handleDelete={handleDelete} />
                 )) 
 
@@ -63,11 +66,11 @@ export const TaskList = () => {
         <section className="tasklist">
             <ul>
                 <div className="header">
-                    <h1>Task List</h1>
+                    <h1> ***** Task List ****** </h1>
                     <button className="trigger" onClick={() => handleClick()} style={{marginLeft: '20px'}}>{buttonLabel}</button>
                 </div>
                 
-                {displayTaskCards()}
+                {taskSectionVisible && displayTaskCards()}
           </ul>
         </section>
   )

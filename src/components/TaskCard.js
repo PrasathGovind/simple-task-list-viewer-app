@@ -2,7 +2,7 @@ import React from 'react'
 
 export const TaskCard = ({item, handleDelete}) => {
   
-  console.log(" item: " + item.id + " - " + item.taskName);
+  //console.log(" item: " + item.id + " - " + item.taskName);
 
   return (
     
