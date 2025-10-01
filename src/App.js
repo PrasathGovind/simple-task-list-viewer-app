@@ -21,9 +21,11 @@ function App() {
 
     <div className="App">
       <Header />
-      <AddTasks tasks={tasks} setTasks={setTasks}/>
-      <TaskList tasks={tasks} setTasks={setTasks}/>
-      <Notes />
+      <main>
+        <AddTasks tasks={tasks} setTasks={setTasks}/>
+        <TaskList tasks={tasks} setTasks={setTasks}/>
+        <Notes />
+      </main>
       <Footer />
     </div>
   );

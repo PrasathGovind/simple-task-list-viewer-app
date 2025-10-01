@@ -4,15 +4,15 @@ import { TaskCard } from './TaskCard';
 
 export const TaskList = ({tasks, setTasks}) => {
 
-    const buttonShowText = "Show Tasks";
+    //const buttonShowText = "Show Tasks";
 
-    const buttonHideText = "Hide Tasks";
+    //const buttonHideText = "Hide Tasks";
 
     //const refTasks = React.useRef([...tasks, taskMap]);
 
-    const [task, showTask] = React.useState([]);
+    //const [task, showTask] = React.useState([]);
 
-    const [buttonLabel, setButtonLabel] = React.useState(buttonHideText);
+    //const [buttonLabel, setButtonLabel] = React.useState(buttonHideText);
 
     const [taskSectionVisible, setTaskSectionVisibility] = React.useState(true);
     
@@ -25,7 +25,7 @@ export const TaskList = ({tasks, setTasks}) => {
             console.log("tasks Size: " + tasks.length);
             //setTasks([]);
             //showTask([]);
-            setButtonLabel(buttonShowText);
+            //setButtonLabel(buttonShowText);
             setTaskSectionVisibility(false);
         }
         else{
@@ -34,7 +34,7 @@ export const TaskList = ({tasks, setTasks}) => {
             //setTasks(refTasks.current);
             //setTasks([...tasks, taskMap]);
             //showTask(tasks);
-            setButtonLabel(buttonHideText);
+            //setButtonLabel(buttonHideText);
             setTaskSectionVisibility(true);
         }
     return ; 
@@ -42,7 +42,7 @@ export const TaskList = ({tasks, setTasks}) => {
 
 
     function handleDelete(id){
-        showTask(task.filter(item => item.id !==id));
+        setTasks(tasks.filter(item => item.id !==id));
     }
 
     function displayTaskCards(){
@@ -67,7 +67,7 @@ export const TaskList = ({tasks, setTasks}) => {
             <ul>
                 <div className="header">
                     <h1> ***** Task List ****** </h1>
-                    <button className="trigger" onClick={() => handleClick()} style={{marginLeft: '20px'}}>{buttonLabel}</button>
+                    <button className="trigger" onClick={() => handleClick()} style={{marginLeft: '20px'}}>{taskSectionVisible ? "Hide Tasks" : "Show Tasks" }</button>
                 </div>
                 
                 {taskSectionVisible && displayTaskCards()}
